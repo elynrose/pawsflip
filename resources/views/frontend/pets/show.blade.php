@@ -2,20 +2,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
 
             <div class="card">
-                <div class="card-header">
-                    {{ trans('global.show') }} {{ trans('cruds.pet.title') }}
-                </div>
-
+           
                 <div class="card-body">
+                    <h1 class="py-5">About {{ $pet->name }}</h1>
                     <div class="form-group">
-                        <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.pets.index') }}">
-                                {{ trans('global.back_to_list') }}
-                            </a>
-                        </div>
+                   
                         <table class="table table-bordered table-striped">
                             <tbody>
                                 <tr>
@@ -89,7 +83,7 @@
                             </tbody>
                         </table>
                         <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.pets.index') }}">
+                            <a class="mt-5" href="{{ route('frontend.pets.index') }}">
                                 {{ trans('global.back_to_list') }}
                             </a>
                         </div>

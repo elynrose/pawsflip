@@ -14,6 +14,7 @@ class CreatePetsTable extends Migration
             $table->string('breed');
             $table->string('size');
             $table->string('age');
+            $table->string('gender');
             $table->string('gets_along_with');
             $table->boolean('is_immunized')->default(0)->nullable();
             $table->timestamps();

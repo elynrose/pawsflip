@@ -1,93 +1,60 @@
 @extends('layouts.frontend')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            @can('pet_create')
-                <div style="margin-bottom: 10px;" class="row">
-                    <div class="col-lg-12">
-                        <a class="btn btn-success" href="{{ route('frontend.pets.create') }}">
-                            {{ trans('global.add') }} {{ trans('cruds.pet.title_singular') }}
-                        </a>
-                    </div>
+
+<section class="features15 agencym4_features15 cid-ucRMkyKyoy" id="features15-3a">
+    <div class="container">
+        @can('pet_create')
+        <div style="margin-bottom: 10px;" class="row">
+            <div class="col-lg-12">
+                <a class="btn btn-success" href="{{ route('frontend.pets.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.pet.title_singular') }}
+                </a>
+            </div>
+        </div>
+        @endcan
+        <div class="media-container-row">
+            @foreach($pets as $key => $pet)
+            <div class="card col-12 col-md-4 col-lg-3">
+                <div class="card-img">
+                    @foreach($pet->photos as $key => $media)
+                    <a href="{{ route('frontend.pets.show', $pet->id) }}" target="_blank" style="display: inline-block">
+                        <img class="img-icon" src="{{ $media->getUrl() }}">
+                    </a>
+                    @endforeach
                 </div>
-            @endcan
-            <div class="card">
-                <div class="card-header">
-                    {{ trans('cruds.pet.title_singular') }} {{ trans('global.list') }}
+                <div class="card-box">
+                    <h4 class="card-title mbr-fonts-style display-5">{{ $pet->name ?? '' }}</h4>
+                    <p class="mbr-text mbr-fonts-style display-7"><strong>Gender</strong>: {{ $pet->gender ?? '' }}<br><strong>Breed</strong>: {{ $pet->breed ?? '' }}<br><strong>Age</strong>: {{ $pet->age ?? '' }}</p>
                 </div>
-
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-Pet">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.pet.fields.animal') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pet.fields.name') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pet.fields.breed') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.pet.fields.age') }}
-                                    </th>
-                                    <th>
-                                        &nbsp;
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($pets as $key => $pet)
-                                    <tr data-entry-id="{{ $pet->id }}">
-                                        <td>
-                                            {{ $pet->animal->animal ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $pet->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $pet->breed ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $pet->age ?? '' }}
-                                        </td>
-                                        <td>
-                                            @can('pet_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('frontend.pets.show', $pet->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
-
-                                            @can('pet_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('frontend.pets.edit', $pet->id) }}">
-                                                    {{ trans('global.edit') }}
-                                                </a>
-                                            @endcan
-
-                                            @can('pet_delete')
-                                                <form action="{{ route('frontend.pets.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                </form>
-                                            @endcan
-
-                                        </td>
-
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="row">
+                    @can('pet_show')
+                    <a class="btn btn-xs btn-primary" href="{{ route('frontend.pets.show', $pet->id) }}">
+                        {{ trans('global.view') }}
+                    </a>
+                    @endcan
+                    @can('pet_edit')
+                    <a class="btn btn-xs btn-info" href="{{ route('frontend.pets.edit', $pet->id) }}">
+                        {{ trans('global.edit') }}
+                    </a>
+                    @endcan
+                    @can('pet_delete')
+                    <form action="{{ route('frontend.pets.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                    </form>
+                    @endcan
                 </div>
             </div>
+            @endforeach
 
         </div>
+        <div class="row">            
+        </div>
     </div>
-</div>
+</section>
+
+
 @endsection
 @section('scripts')
 @parent

@@ -125,7 +125,7 @@ return [
         'fields'         => [
             'id'                     => 'ID',
             'id_helper'              => ' ',
-            'animal'                 => 'Animal',
+            'animal'                 => 'Pet Type',
             'animal_helper'          => ' ',
             'name'                   => 'Name',
             'name_helper'            => ' ',
@@ -133,6 +133,8 @@ return [
             'size_helper'            => ' ',
             'age'                    => 'How old is your pet?',
             'age_helper'             => ' ',
+            'gender'                 => 'Pet Gender?',
+            'gender_helper'             => ' ',
             'gets_along_with'        => 'Gets Along With',
             'gets_along_with_helper' => ' ',
             'is_immunized'           => 'Is Immunized?',

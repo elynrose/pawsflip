@@ -39,6 +39,10 @@ class StorePetRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'gender' => [
+                'string',
+                'required',
+            ],
             'gets_along_with' => [
                 'required',
             ],

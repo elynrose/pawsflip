@@ -33,6 +33,12 @@ class Pet extends Model implements HasMedia
         'both' => 'Both',
     ];
 
+    public const GENDER_SELECT = [
+        'Male' => 'Male',
+        'Female' => 'Female',
+        'Undisclosed' => 'Undisclosed',
+    ];
+
     public const SIZE_SELECT = [
         '0-15'   => '0-15',
         '16-40'  => '16-40',
@@ -46,6 +52,7 @@ class Pet extends Model implements HasMedia
         'breed',
         'size',
         'age',
+        'gender',
         'gets_along_with',
         'is_immunized',
         'created_at',

@@ -2,14 +2,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
 
             <div class="card">
-                <div class="card-header">
-                    {{ trans('global.create') }} {{ trans('cruds.pet.title_singular') }}
-                </div>
+       
 
                 <div class="card-body">
+                    <h1 class="py-5">Add a pet</h1>
                     <form method="POST" action="{{ route("frontend.pets.store") }}" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
@@ -84,6 +83,21 @@
                             <span class="help-block">{{ trans('cruds.pet.fields.age_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label class="required">{{ trans('cruds.pet.fields.gender') }}</label>
+                            <select class="form-control" name="gender" id="gender" required>
+                                <option value disabled {{ old('gender', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                                @foreach(App\Models\Pet::GENDER_SELECT as $key => $label)
+                                    <option value="{{ $key }}" {{ old('gender', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('gender'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('gender') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.pet.fields.gender_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <label class="required">{{ trans('cruds.pet.fields.gets_along_with') }}</label>
                             @foreach(App\Models\Pet::GETS_ALONG_WITH_RADIO as $key => $label)
                                 <div>
@@ -112,7 +126,8 @@
                             <span class="help-block">{{ trans('cruds.pet.fields.is_immunized_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-danger" type="submit">
+                        <input type="hidden" name="created_by_id" value="{{Auth::id()}}">
+                            <button class="btn btn-success" type="submit">
                                 {{ trans('global.save') }}
                             </button>
                         </div>

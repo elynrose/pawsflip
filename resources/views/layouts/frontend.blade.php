@@ -8,14 +8,45 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Home - Your Pet's Home Away from Home</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, mobirise.com">
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image:src" content="https://www.pawflips.com/images/home.png">
+  <meta property="og:image" content="https://www.pawflips.com/images/home.png">
+  <meta name="twitter:title" content="Home - Your Pet's Home Away from Home">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo-342x349.png" type="image/x-icon">
+  <meta name="description" content="Discover a trusted community of pet lovers where you can find reliable care for your pets. Join now to earn credits by caring for pets and use them when you need care for your own. Explore how our unique membership program works and the benefits it offers.">
+  
+  
+
+  <link rel="stylesheet" href="/assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="/assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="/assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+  <link rel="stylesheet" href="/assets/Material-Design-Icons/css/material.css">
+  <link rel="stylesheet" href="/assets/icon54/style.css">
+  <link rel="stylesheet" href="/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="/assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="/assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="/assets/mobirise/css/mbr-additional.css?v=vJVdZM"><link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css?v=vJVdZM" type="text/css">
+
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -32,133 +63,12 @@
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    
+@include('partials.frontend_menu')<!---->
+    <div id="app" class="py-5">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        @guest
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('frontend.home') }}">
-                                    {{ __('Dashboard') }}
-                                </a>
-                            </li>
-                        @endguest
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if(Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
-
-                                    @can('user_management_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.userManagement.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('permission_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.permissions.index') }}">
-                                            {{ trans('cruds.permission.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('role_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.roles.index') }}">
-                                            {{ trans('cruds.role.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('user_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.users.index') }}">
-                                            {{ trans('cruds.user.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('service_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.services.index') }}">
-                                            {{ trans('cruds.service.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('animal_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.animals.index') }}">
-                                            {{ trans('cruds.animal.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('availability_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.availabilities.index') }}">
-                                            {{ trans('cruds.availability.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('service_request_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.service-requests.index') }}">
-                                            {{ trans('cruds.serviceRequest.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('pet_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.pets.index') }}">
-                                            {{ trans('cruds.pet.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('booking_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.bookings.index') }}">
-                                            {{ trans('cruds.booking.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('credit_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.credits.index') }}">
-                                            {{ trans('cruds.credit.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('review_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.reviews.index') }}">
-                                            {{ trans('cruds.review.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('user_alert_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.user-alerts.index') }}">
-                                            {{ trans('cruds.userAlert.title') }}
-                                        </a>
-                                    @endcan
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+    
+     
         <main class="py-4">
             @if(session('message'))
                 <div class="container">
@@ -187,8 +97,22 @@
             @yield('content')
         </main>
     </div>
+    <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/assets/popper/popper.min.js"></script>
+  <script src="/assets/tether/tether.min.js"></script>
+  <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="/assets/dropdown/js/nav-dropdown.js"></script>
+  <script src="/assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="/assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="/assets/parallax/jarallax.min.js"></script>
+  <script src="/assets/theme/js/script.js"></script>
+  <script src="/assets/formoid/formoid.min.js"></script>
+  
+  
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
